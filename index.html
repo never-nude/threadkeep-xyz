@@ -126,10 +126,14 @@
   .checkout::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--rust),#e2823f)}
   .checkout h3{font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);font-weight:500;margin:6px 0 18px}
   .pay{display:grid;gap:11px}
+  .pay-wallets{display:grid;grid-template-columns:1fr 1fr;gap:11px}
   .pay button{width:100%;border:none;cursor:pointer;font-family:var(--body);font-weight:600;
     font-size:16px;padding:15px;border-radius:13px;display:flex;align-items:center;justify-content:center;gap:8px;transition:.15s}
   .pay .apple{background:#000;color:#fff}.pay .apple:hover{background:#1a1a1a}
   .pay .gpay{background:#fff;color:#3c4043;border:1px solid #dadce0}.pay .gpay:hover{box-shadow:0 1px 6px rgba(0,0,0,.12)}
+  .pay .paypal{background:#ffc439}.pay .paypal:hover{background:#f0b32d}
+  .pay .paypal .pp1{color:#003087;font-weight:800;font-style:italic}.pay .paypal .pp2{color:#0070ba;font-weight:800;font-style:italic}
+  .pay .venmo{background:#008CFF;color:#fff;font-weight:700;font-style:italic;letter-spacing:.01em}.pay .venmo:hover{background:#0a7ce0}
   .pay .card{background:var(--rust);color:#fff}.pay .card:hover{background:var(--rust2)}
   .lbrand-b{color:#4285F4}.lbrand-r{color:#EA4335}.lbrand-y{color:#FBBC05}.lbrand-g{color:#34A853}
   .appllogo{font-size:17px;transform:translateY(-1px)}
@@ -291,12 +295,16 @@
     <div class="checkout reveal">
       <h3>Instant checkout</h3>
       <div class="pay">
-        <button class="apple" data-checkout data-method="Apple Pay"><span class="appllogo"></span> Pay</button>
-        <button class="gpay" data-checkout data-method="Google Pay"><span class="lbrand-b">G</span><span class="lbrand-r">o</span><span class="lbrand-y">o</span><span class="lbrand-b">g</span><span class="lbrand-g">l</span><span class="lbrand-r">e</span>&nbsp;Pay</button>
+        <div class="pay-wallets">
+          <button class="apple" data-checkout data-method="Apple Pay"><span class="appllogo"></span> Pay</button>
+          <button class="gpay" data-checkout data-method="Google Pay"><span class="lbrand-b">G</span><span class="lbrand-r">o</span><span class="lbrand-y">o</span><span class="lbrand-b">g</span><span class="lbrand-g">l</span><span class="lbrand-r">e</span>&nbsp;Pay</button>
+          <button class="paypal" data-checkout data-method="PayPal"><span class="pp1">Pay</span><span class="pp2">Pal</span></button>
+          <button class="venmo" data-checkout data-method="Venmo">venmo</button>
+        </div>
         <button class="card" data-checkout data-method="card">Buy with card — $18.99</button>
       </div>
-      <div class="marks"><span>Visa</span><span>Mastercard</span><span>Amex</span><span>Apple&nbsp;Pay</span><span>Google&nbsp;Pay</span></div>
-      <p class="paynote">Secure one-time payment. Apple Pay and Google Pay appear automatically on supported devices. Your download link and license arrive by email the moment payment clears.</p>
+      <div class="marks"><span>Visa</span><span>Mastercard</span><span>Amex</span><span>PayPal</span><span>Venmo</span><span>Apple&nbsp;Pay</span><span>Google&nbsp;Pay</span></div>
+      <p class="paynote">Secure one-time payment. Apple Pay, Google Pay, PayPal, and Venmo appear automatically where supported. Your download link and license arrive by email the moment payment clears.</p>
     </div>
   </div>
 </section>
