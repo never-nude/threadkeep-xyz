@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="./web/threadkeep-icon-180.png">
+<link rel="apple-touch-icon" href="./web/threadkeep-icon-180.png">
 <title>ThreadKeep — Keep every thread. A macOS iMessage archiver.</title>
 <meta name="description" content="ThreadKeep archives your iMessage history into a durable, searchable record you own. Local-first, no subscription. One-time $18.99.">
 <link rel="canonical" href="https://threadkeep.xyz/">
@@ -23,15 +25,16 @@
 <script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
 <style>
   :root{
-    --paper:#f7f4ee; --paper2:#efeae0; --card:#ffffff;
-    --ink:#1d1a16; --dim:#6c645a; --faint:#9a9085;
-    --rust:#cf552c; --rust2:#b5431f; --plum:#7d57ab;
-    --line:#e6dfd2; --line2:#dad1c1; --maxw:1120px;
+    --paper:#f5f5fb; --paper2:#ecebf6; --card:#ffffff;
+    --ink:#1f1c2e; --dim:#6a6580; --faint:#9c95ad;
+    --rust:#7666db; --rust2:#5f4fc4; --plum:#e365a8; /* token names kept; values now violet (primary) + pink (accent), sampled from the app icon */
+    --violet-lt:#9d92f4;
+    --line:#e6e3f2; --line2:#d9d5ec; --maxw:1120px;
     --disp:'Space Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
     --body:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
     --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
-    --sh:0 24px 60px -34px rgba(60,40,20,.42);
-    --sh-sm:0 10px 26px -18px rgba(60,40,20,.40);
+    --sh:0 24px 60px -34px rgba(55,45,105,.40);
+    --sh-sm:0 10px 26px -18px rgba(55,45,105,.38);
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -45,10 +48,8 @@
   .kick .slash{color:var(--faint)}
 
   /* app mark */
-  .mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(155deg,#e2683f,#c0461f);
-    display:inline-flex;align-items:center;justify-content:center;box-shadow:0 4px 12px -4px rgba(180,67,31,.6);flex:none}
-  .mark svg{width:17px;height:17px}
-  .mark.big{width:62px;height:62px;border-radius:16px}.mark.big svg{width:34px;height:34px}
+  .appicon{height:31px;width:auto;display:block;flex:none}
+  .appicon.big{height:106px;width:auto;display:block}
 
   /* nav */
   header.nav{position:sticky;top:0;z-index:50;background:rgba(247,244,238,.82);
@@ -72,7 +73,7 @@
 
   .btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--body);font-weight:600;
     font-size:15.5px;padding:14px 26px;border-radius:999px;cursor:pointer;border:1.5px solid transparent;transition:.15s}
-  .btn-fill{background:var(--rust);color:#fff;border-color:var(--rust);box-shadow:0 12px 24px -12px rgba(207,85,44,.7)}
+  .btn-fill{background:var(--rust);color:#fff;border-color:var(--rust);box-shadow:0 12px 24px -12px rgba(118,102,219,.55)}
   .btn-fill:hover{background:var(--rust2);border-color:var(--rust2)}
   .btn-out{background:transparent;color:var(--ink);border-color:var(--line2)}
   .btn-out:hover{border-color:var(--ink)}
@@ -83,7 +84,7 @@
 
   /* hero — centered */
   .hero{text-align:center;padding:72px 0 56px}
-  .hero .mark.big{margin:0 auto 26px}
+  .hero .appicon.big{margin:0 auto 26px}
   .hero h1{max-width:14ch;margin:0 auto}
   .hero .lead{max-width:54ch;margin:24px auto 0}
   .price-pill{display:inline-flex;align-items:center;gap:10px;margin:30px 0 8px;font-family:var(--mono);
@@ -93,7 +94,7 @@
   .micro{color:var(--faint);font-family:var(--mono);font-size:12px;margin-top:22px;letter-spacing:.02em}
   .hero-shot{margin-top:56px;position:relative}
   .hero-shot::before{content:"";position:absolute;inset:auto 8% -22px 8%;height:60px;
-    background:radial-gradient(ellipse at center,rgba(207,85,44,.18),transparent 70%);filter:blur(8px);z-index:-1}
+    background:radial-gradient(ellipse at center,rgba(118,102,219,.22),transparent 70%);filter:blur(8px);z-index:-1}
 
   /* pitch */
   .pitch{background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -110,7 +111,7 @@
   .fcard .shot{border:1px solid var(--line2);border-radius:11px;overflow:hidden;box-shadow:var(--sh-sm)}
   .fcard .tags{display:flex;gap:7px;margin-bottom:18px;flex-wrap:wrap}
   .fcard .tags span{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--plum);
-    background:rgba(125,87,171,.09);border:1px solid rgba(125,87,171,.2);border-radius:6px;padding:3px 8px}
+    background:rgba(227,101,168,.10);border:1px solid rgba(227,101,168,.26);border-radius:6px;padding:3px 8px}
 
   /* buy */
   .buy{background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -123,7 +124,7 @@
   .incl li::before{content:"";position:absolute;left:1px;top:7px;width:13px;height:8px;
     border-left:2px solid var(--rust);border-bottom:2px solid var(--rust);transform:rotate(-45deg)}
   .checkout{background:var(--card);border:1px solid var(--line2);border-radius:20px;padding:30px;box-shadow:var(--sh);position:relative;overflow:hidden}
-  .checkout::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--rust),#e2823f)}
+  .checkout::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--rust),var(--plum))}
   .checkout h3{font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);font-weight:500;margin:6px 0 18px}
   .pay{display:grid;gap:11px}
   .pay-wallets{display:grid;grid-template-columns:1fr 1fr;gap:11px}
@@ -190,11 +191,9 @@
 </head>
 <body id="top">
 
-<svg width="0" height="0" style="position:absolute"><symbol id="tk-glyph" viewBox="0 0 24 24"><path d="M5 6.5h14M5 11h14M5 15.5h9" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round"/></symbol></svg>
-
 <header class="nav">
   <div class="wrap">
-    <span class="brand"><span class="mark"><svg><use href="#tk-glyph"/></svg></span>ThreadKeep</span>
+    <span class="brand"><img class="appicon" src="./web/threadkeep-bubble.png" alt="ThreadKeep app icon">ThreadKeep</span>
     <nav class="navlinks">
       <a href="#features">Features</a>
       <a href="#install">Install</a>
@@ -207,7 +206,7 @@
 <!-- HERO -->
 <section class="hero">
   <div class="wrap">
-    <span class="mark big"><svg><use href="#tk-glyph"/></svg></span>
+    <img class="appicon big" src="./web/threadkeep-bubble.png" alt="ThreadKeep app icon">
     <span class="kick"><span class="slash">//</span> macOS · iMessage archiver</span>
     <h1>Keep every <span class="rust">thread.</span></h1>
     <p class="lead">ThreadKeep pulls your iMessage history out of a database you can't see and into a library you own — browsable, fully searchable, and stored on your Mac. The conversations that would otherwise quietly disappear.</p>
@@ -375,7 +374,7 @@
 
 <footer>
   <div class="wrap foot">
-    <div class="big"><span class="mark"><svg><use href="#tk-glyph"/></svg></span>Keep every thread.</div>
+    <div class="big"><img class="appicon" src="./web/threadkeep-bubble.png" alt="ThreadKeep app icon">Keep every thread.</div>
     <div style="text-align:right">
       <a href="mailto:michael.kushman@gmail.com" class="mail">michael.kushman@gmail.com</a>
       <div class="meta">© <span id="yr"></span> Michael Conor Kushman · <a href="https://kushman.work">kushman.work</a> · <a href="#legal">Disclaimers</a></div>
