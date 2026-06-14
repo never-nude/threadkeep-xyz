@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ThreadKeep — Keep every thread. A macOS iMessage archiver.</title>
+<meta name="description" content="ThreadKeep archives your iMessage history into a durable, searchable record you own. Local-first, no subscription. One-time $18.99.">
+<link rel="canonical" href="https://threadkeep.xyz/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://threadkeep.xyz/">
+<meta property="og:site_name" content="ThreadKeep">
+<meta property="og:title" content="ThreadKeep — Keep every thread.">
+<meta property="og:description" content="Archive iMessage into a durable, searchable record you own. Local-first, no subscription. $18.99 once.">
+<meta property="og:image" content="https://threadkeep.xyz/web/02-interface-search.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ThreadKeep — Keep every thread.">
+<meta name="twitter:description" content="Archive iMessage into a durable, searchable record you own. Local-first, no subscription. $18.99 once.">
+<meta name="twitter:image" content="https://threadkeep.xyz/web/02-interface-search.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Lemon Squeezy overlay checkout (harmless if you use a Stripe/Paddle link instead) -->
+<script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
+<style>
+  :root{
+    --paper:#f7f4ee; --paper2:#efeae0; --card:#ffffff;
+    --ink:#1d1a16; --dim:#6c645a; --faint:#9a9085;
+    --rust:#cf552c; --rust2:#b5431f; --plum:#7d57ab;
+    --line:#e6dfd2; --line2:#dad1c1; --maxw:1120px;
+    --disp:'Space Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+    --body:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sh:0 24px 60px -34px rgba(60,40,20,.42);
+    --sh-sm:0 10px 26px -18px rgba(60,40,20,.40);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
+    font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
+  .kick{font-family:var(--mono);font-size:12.5px;font-weight:500;letter-spacing:.06em;
+    color:var(--rust);text-transform:uppercase;display:inline-block;margin-bottom:16px}
+  .kick .slash{color:var(--faint)}
+
+  /* app mark */
+  .mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(155deg,#e2683f,#c0461f);
+    display:inline-flex;align-items:center;justify-content:center;box-shadow:0 4px 12px -4px rgba(180,67,31,.6);flex:none}
+  .mark svg{width:17px;height:17px}
+  .mark.big{width:62px;height:62px;border-radius:16px}.mark.big svg{width:34px;height:34px}
+
+  /* nav */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(247,244,238,.82);
+    backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--disp);font-weight:700;font-size:18px;letter-spacing:-.01em}
+  .navlinks{display:flex;align-items:center;gap:28px}
+  .navlinks a{color:var(--dim);font-size:15px;transition:color .15s}
+  .navlinks a:hover{color:var(--ink)}
+  .navlinks a.home{font-family:var(--mono);font-size:12.5px;letter-spacing:.03em}
+  .nav-buy{background:var(--ink);color:var(--paper) !important;font-weight:600;font-size:14px;
+    padding:9px 17px;border-radius:999px;transition:.15s}
+  .nav-buy:hover{background:#000}
+
+  section{padding:96px 0}
+  h1{font-family:var(--disp);font-size:clamp(46px,7vw,82px);font-weight:700;letter-spacing:-.03em;line-height:1.0;margin:0}
+  h2{font-family:var(--disp);font-size:clamp(30px,4.2vw,42px);font-weight:600;letter-spacing:-.02em;line-height:1.06;margin:0 0 16px}
+  h3{font-family:var(--disp);font-size:21px;font-weight:600;letter-spacing:-.01em;margin:0 0 9px}
+  .lead{color:var(--dim);font-size:clamp(17px,1.9vw,20px);line-height:1.55}
+  .rust{color:var(--rust)}
+
+  .btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--body);font-weight:600;
+    font-size:15.5px;padding:14px 26px;border-radius:999px;cursor:pointer;border:1.5px solid transparent;transition:.15s}
+  .btn-fill{background:var(--rust);color:#fff;border-color:var(--rust);box-shadow:0 12px 24px -12px rgba(207,85,44,.7)}
+  .btn-fill:hover{background:var(--rust2);border-color:var(--rust2)}
+  .btn-out{background:transparent;color:var(--ink);border-color:var(--line2)}
+  .btn-out:hover{border-color:var(--ink)}
+
+  /* frame for screenshots */
+  .frame{border-radius:16px;overflow:hidden;background:var(--card);border:1px solid var(--line2);box-shadow:var(--sh)}
+  .frame img{width:100%;display:block}
+
+  /* hero — centered */
+  .hero{text-align:center;padding:72px 0 56px}
+  .hero .mark.big{margin:0 auto 26px}
+  .hero h1{max-width:14ch;margin:0 auto}
+  .hero .lead{max-width:54ch;margin:24px auto 0}
+  .price-pill{display:inline-flex;align-items:center;gap:10px;margin:30px 0 8px;font-family:var(--mono);
+    font-size:13.5px;color:var(--dim);background:var(--paper2);border:1px solid var(--line);border-radius:999px;padding:8px 16px}
+  .price-pill b{color:var(--ink);font-size:15px}
+  .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+  .micro{color:var(--faint);font-family:var(--mono);font-size:12px;margin-top:22px;letter-spacing:.02em}
+  .hero-shot{margin-top:56px;position:relative}
+  .hero-shot::before{content:"";position:absolute;inset:auto 8% -22px 8%;height:60px;
+    background:radial-gradient(ellipse at center,rgba(207,85,44,.18),transparent 70%);filter:blur(8px);z-index:-1}
+
+  /* pitch */
+  .pitch{background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .pitch-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start}
+  .pitch h2{max-width:16ch}
+  .pitch .body{color:var(--dim);font-size:18px;line-height:1.62;max-width:60ch}
+
+  /* feature grid */
+  .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:40px}
+  .fcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--sh-sm);
+    display:flex;flex-direction:column}
+  .fcard .flabel{font-family:var(--mono);font-size:11.5px;letter-spacing:.07em;color:var(--rust);text-transform:uppercase;margin-bottom:12px}
+  .fcard p{color:var(--dim);font-size:15.5px;margin:0 0 20px;flex:1}
+  .fcard .shot{border:1px solid var(--line2);border-radius:11px;overflow:hidden;box-shadow:var(--sh-sm)}
+  .fcard .tags{display:flex;gap:7px;margin-bottom:18px;flex-wrap:wrap}
+  .fcard .tags span{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--plum);
+    background:rgba(125,87,171,.09);border:1px solid rgba(125,87,171,.2);border-radius:6px;padding:3px 8px}
+
+  /* buy */
+  .buy{background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .buy-grid{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
+  .bigprice{font-family:var(--disp);font-size:72px;font-weight:700;letter-spacing:-.04em;line-height:1;margin:14px 0 4px}
+  .bigprice small{font-size:20px;font-weight:500;color:var(--faint)}
+  .once{font-family:var(--mono);color:var(--rust);font-weight:500;font-size:13px;letter-spacing:.05em;text-transform:uppercase}
+  .incl{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:12px}
+  .incl li{position:relative;padding-left:28px;color:var(--dim);font-size:15.5px}
+  .incl li::before{content:"";position:absolute;left:1px;top:7px;width:13px;height:8px;
+    border-left:2px solid var(--rust);border-bottom:2px solid var(--rust);transform:rotate(-45deg)}
+  .checkout{background:var(--card);border:1px solid var(--line2);border-radius:20px;padding:30px;box-shadow:var(--sh);position:relative;overflow:hidden}
+  .checkout::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--rust),#e2823f)}
+  .checkout h3{font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);font-weight:500;margin:6px 0 18px}
+  .pay{display:grid;gap:11px}
+  .pay button{width:100%;border:none;cursor:pointer;font-family:var(--body);font-weight:600;
+    font-size:16px;padding:15px;border-radius:13px;display:flex;align-items:center;justify-content:center;gap:8px;transition:.15s}
+  .pay .apple{background:#000;color:#fff}.pay .apple:hover{background:#1a1a1a}
+  .pay .gpay{background:#fff;color:#3c4043;border:1px solid #dadce0}.pay .gpay:hover{box-shadow:0 1px 6px rgba(0,0,0,.12)}
+  .pay .card{background:var(--rust);color:#fff}.pay .card:hover{background:var(--rust2)}
+  .lbrand-b{color:#4285F4}.lbrand-r{color:#EA4335}.lbrand-y{color:#FBBC05}.lbrand-g{color:#34A853}
+  .appllogo{font-size:17px;transform:translateY(-1px)}
+  .marks{display:flex;gap:8px;justify-content:center;margin-top:15px;flex-wrap:wrap}
+  .marks span{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--faint);border:1px solid var(--line2);border-radius:5px;padding:4px 8px;text-transform:uppercase}
+  .paynote{color:var(--faint);font-size:12.5px;text-align:center;margin-top:15px;line-height:1.5}
+
+  /* install */
+  .steps{counter-reset:s;display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:34px}
+  .step{position:relative;padding:22px 22px 22px 24px;background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--sh-sm)}
+  .step .n{counter-increment:s;font-family:var(--mono);font-size:12px;color:var(--rust);font-weight:600;display:block;margin-bottom:8px}
+  .step .n::before{content:"0" counter(s) " /"}
+  .step b{font-family:var(--disp);display:block;font-size:16.5px;font-weight:600;margin-bottom:4px}
+  .step p{margin:0;color:var(--dim);font-size:14.5px}
+  .step code{font-family:var(--mono);background:var(--paper2);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:12.5px}
+
+  .specs{display:grid;grid-template-columns:repeat(2,1fr);gap:0 56px;margin-top:34px;border-top:1px solid var(--line2)}
+  .specs div{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .specs dt{font-family:var(--mono);color:var(--faint);font-size:13px;letter-spacing:.02em}
+  .specs dd{margin:0;color:var(--ink);font-size:14.5px;font-weight:500;text-align:right;max-width:60%}
+
+  .faq{display:grid;grid-template-columns:1fr 1fr;gap:34px 56px;margin-top:34px}
+  .faq h3{font-size:18px;margin-bottom:6px}
+  .faq p{color:var(--dim);font-size:15px;margin:0;max-width:46ch}
+
+  .legal{background:var(--paper2);border-top:1px solid var(--line)}
+  .legal .wrap{padding:60px 26px}
+  .legal h2{font-size:24px;margin-bottom:18px}
+  .legal p{color:var(--faint);font-size:13px;line-height:1.7;max-width:92ch;margin:0 0 13px}
+  .legal strong{color:var(--dim)}
+
+  footer{border-top:1px solid var(--line);padding:50px 0 64px}
+  .foot{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:22px}
+  .foot .big{font-family:var(--disp);font-size:clamp(26px,4vw,40px);font-weight:700;letter-spacing:-.02em;display:flex;align-items:center;gap:13px}
+  .foot a.mail{color:var(--rust)}
+  .foot .meta{font-family:var(--mono);color:var(--faint);font-size:12.5px}
+  .foot .meta a{color:var(--faint);text-decoration:underline}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  #toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%) translateY(20px);
+    background:var(--ink);color:var(--paper);padding:13px 20px;border-radius:12px;
+    font-size:14px;opacity:0;pointer-events:none;transition:.3s;z-index:99;box-shadow:0 20px 50px -20px rgba(0,0,0,.5);max-width:90vw}
+  #toast.show{opacity:1;transform:translateX(-50%)}
+
+  @media(max-width:840px){
+    .pitch-grid,.fgrid,.buy-grid,.specs,.faq,.steps{grid-template-columns:1fr}
+    section{padding:66px 0}
+    .navlinks a:not(.nav-buy):not(.home){display:none}
+    .bigprice{font-size:58px}
+  }
+</style>
+</head>
+<body id="top">
+
+<svg width="0" height="0" style="position:absolute"><symbol id="tk-glyph" viewBox="0 0 24 24"><path d="M5 6.5h14M5 11h14M5 15.5h9" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round"/></symbol></svg>
+
+<header class="nav">
+  <div class="wrap">
+    <span class="brand"><span class="mark"><svg><use href="#tk-glyph"/></svg></span>ThreadKeep</span>
+    <nav class="navlinks">
+      <a href="#features">Features</a>
+      <a href="#install">Install</a>
+      <a href="https://kushman.work" class="home">↩ kushman.work</a>
+      <a href="#buy" class="nav-buy">Buy — $18.99</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <span class="mark big"><svg><use href="#tk-glyph"/></svg></span>
+    <span class="kick"><span class="slash">//</span> macOS · iMessage archiver</span>
+    <h1>Keep every <span class="rust">thread.</span></h1>
+    <p class="lead">ThreadKeep pulls your iMessage history out of a database you can't see and into a library you own — browsable, fully searchable, and stored on your Mac. The conversations that would otherwise quietly disappear.</p>
+    <div class="price-pill">One-time <b>$18.99</b> · no subscription · free 1.x updates</div>
+    <div class="cta-row">
+      <button class="btn btn-fill" data-checkout>Buy ThreadKeep</button>
+      <a href="#features" class="btn btn-out">See how it works</a>
+    </div>
+    <p class="micro">macOS 13 Ventura+ · Apple silicon &amp; Intel · works fully offline</p>
+    <div class="hero-shot frame reveal"><img src="./web/02-interface-search.jpg" alt="ThreadKeep main window — conversation list, an open thread, and live search across messages"></div>
+  </div>
+</section>
+
+<!-- 01 PITCH -->
+<section class="pitch">
+  <div class="wrap pitch-grid">
+    <div class="reveal">
+      <span class="kick"><span class="slash">//</span> 01 — Why</span>
+      <h2>Years of messages, one failed backup away from gone.</h2>
+    </div>
+    <div class="reveal">
+      <p class="body">Your most important conversations live inside Messages — a format you don't control and can't easily read, search, or keep. A new phone, a skipped backup, an OS update, and they're gone. ThreadKeep makes a real copy: every conversation imported into a clean, searchable library of plain records on your own machine. No cloud account. No monthly fee. No one else holding your history. Just messages you can actually find, read, and keep for as long as you want them.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 FEATURES -->
+<section id="features">
+  <div class="wrap">
+    <span class="kick reveal"><span class="slash">//</span> 02 — What it does</span>
+    <h2 class="reveal">Built to find, read, and keep.</h2>
+    <div class="fgrid">
+      <div class="fcard reveal">
+        <div class="flabel">Feature 01 — Search</div>
+        <h3>Search across every thread</h3>
+        <p>Type a name, a date, a link — even a single word — and ThreadKeep searches every conversation at once, then jumps you straight to the match. It finds tapbacks and reactions too, so a moment you remember but can't quite place is one search away.</p>
+        <div class="tags"><span>FULL-TEXT</span><span>CROSS-THREAD</span></div>
+        <div class="shot"><img src="./web/03-search-love.jpg" alt="Searching for the word love returns six results across three conversations, with the matching message highlighted"></div>
+      </div>
+
+      <div class="fcard reveal">
+        <div class="flabel">Feature 02 — Export</div>
+        <h3>Export a clean, lasting archive</h3>
+        <p>Turn any thread into a paginated, print-ready document with every timestamp intact. Save it as a PDF, file it, or print it — a record that outlives any phone, account, or platform change.</p>
+        <div class="tags"><span>PDF EXPORT</span><span>PRINT-READY</span></div>
+        <div class="shot"><img src="./web/05-export-archive.jpg" alt="An exported, paginated transcript with message bubbles and timestamps, footed ThreadKeep local archive"></div>
+      </div>
+
+      <div class="fcard reveal">
+        <div class="flabel">Feature 03 — Privacy</div>
+        <h3>Local-first, by design</h3>
+        <p>Your library never leaves your Mac. ThreadKeep has no account, makes no network calls, and collects nothing — there's no telemetry to opt out of. Exports happen only when you ask. Using contact names is optional, and you can change it later.</p>
+        <div class="tags"><span>ON-DEVICE</span><span>NO ACCOUNT</span></div>
+        <div class="shot"><img src="./web/01-onboarding-privacy.jpg" alt="ThreadKeep onboarding screen explaining the library stays on your Mac and exports happen only when you choose"></div>
+      </div>
+
+      <div class="fcard reveal">
+        <div class="flabel">Feature 04 — Setup</div>
+        <h3>A guided, one-time import</h3>
+        <p>A short guided import brings your conversations in automatically — everything, or just the ones you choose. Set it up once in under a minute, then never think about it again.</p>
+        <div class="tags"><span>ONE-TIME IMPORT</span><span>SELECTIVE</span></div>
+        <div class="shot"><img src="./web/04-import-setup.jpg" alt="The Add Conversations sheet guiding the user through importing messages"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 BUY -->
+<section class="buy" id="buy">
+  <div class="wrap buy-grid">
+    <div class="reveal">
+      <span class="kick"><span class="slash">//</span> 03 — One price</span>
+      <h2>Buy once. Keep forever.</h2>
+      <div class="bigprice">$18.99 <small>USD</small></div>
+      <div class="once">One-time purchase · no subscription</div>
+      <ul class="incl">
+        <li>Lifetime license — yours to keep</li>
+        <li>Free updates throughout version 1.x</li>
+        <li>Unlimited conversations and exports</li>
+        <li>Signed &amp; notarized — instant download after payment</li>
+        <li>14-day money-back guarantee</li>
+      </ul>
+    </div>
+
+    <div class="checkout reveal">
+      <h3>Instant checkout</h3>
+      <div class="pay">
+        <button class="apple" data-checkout data-method="Apple Pay"><span class="appllogo"></span> Pay</button>
+        <button class="gpay" data-checkout data-method="Google Pay"><span class="lbrand-b">G</span><span class="lbrand-r">o</span><span class="lbrand-y">o</span><span class="lbrand-b">g</span><span class="lbrand-g">l</span><span class="lbrand-r">e</span>&nbsp;Pay</button>
+        <button class="card" data-checkout data-method="card">Buy with card — $18.99</button>
+      </div>
+      <div class="marks"><span>Visa</span><span>Mastercard</span><span>Amex</span><span>Apple&nbsp;Pay</span><span>Google&nbsp;Pay</span></div>
+      <p class="paynote">Secure one-time payment. Apple Pay and Google Pay appear automatically on supported devices. Your download link and license arrive by email the moment payment clears.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 04 INSTALL -->
+<section id="install">
+  <div class="wrap">
+    <span class="kick reveal"><span class="slash">//</span> 04 — Installation</span>
+    <h2 class="reveal">Up and running in a minute.</h2>
+    <p class="lead reveal">After purchase you'll get <strong style="color:var(--ink)">ThreadKeep-1.0.dmg</strong> by email and on the download page.</p>
+    <div class="steps reveal">
+      <div class="step"><span class="n"></span><b>Open the disk image</b><p>Double-click <code>ThreadKeep-1.0.dmg</code>, then drag <strong>ThreadKeep</strong> into your <code>Applications</code> folder.</p></div>
+      <div class="step"><span class="n"></span><b>Launch it</b><p>Open ThreadKeep from Applications. It's signed and notarized by Apple, so it opens normally. If macOS ever hesitates, right-click the app and choose <code>Open</code> once.</p></div>
+      <div class="step"><span class="n"></span><b>Allow ThreadKeep to read Messages</b><p>macOS asks your permission before any app can read Messages. In <code>System Settings → Privacy &amp; Security</code>, turn on the switch for ThreadKeep, then reopen the app. Access is read-only and never leaves your Mac.</p></div>
+      <div class="step"><span class="n"></span><b>Import your messages</b><p>Click <strong>Import Messages</strong> to build your library — everything, or just the conversations you choose. That's it.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 SPECS -->
+<section class="pitch" style="border-bottom:none">
+  <div class="wrap">
+    <span class="kick reveal"><span class="slash">//</span> 05 — Tech specs</span>
+    <h2 class="reveal">The details.</h2>
+    <dl class="specs reveal">
+      <div><dt>platform</dt><dd>macOS 13 Ventura or later</dd></div>
+      <div><dt>architecture</dt><dd>Universal — Apple silicon &amp; Intel</dd></div>
+      <div><dt>download_size</dt><dd>~14 MB</dd></div>
+      <div><dt>distribution</dt><dd>Signed &amp; notarized .dmg</dd></div>
+      <div><dt>built_with</dt><dd>Swift &amp; SwiftUI, native</dd></div>
+      <div><dt>source_data</dt><dd>Messages on this Mac (read-only)</dd></div>
+      <div><dt>permissions</dt><dd>Read-only access to Messages, one-time</dd></div>
+      <div><dt>export_formats</dt><dd>PDF · paginated transcript</dd></div>
+      <div><dt>privacy</dt><dd>100% on-device · no account · no telemetry</dd></div>
+      <div><dt>network_use</dt><dd>None — works fully offline</dd></div>
+      <div><dt>languages</dt><dd>English</dd></div>
+      <div><dt>version · license</dt><dd>1.0 · one-time purchase</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="wrap">
+    <span class="kick reveal"><span class="slash">//</span> 06 — Good to know</span>
+    <div class="faq">
+      <div class="reveal"><h3>Does it change my messages?</h3><p>No. ThreadKeep only reads the Messages database on your Mac. It never sends, edits, or deletes anything.</p></div>
+      <div class="reveal"><h3>Where is my data stored?</h3><p>Entirely on your Mac, in a local library. Nothing is uploaded, and there's no account to create.</p></div>
+      <div class="reveal"><h3>Why does macOS ask for permission?</h3><p>macOS keeps Messages in a protected area, so it asks your OK before any app can read it. You give ThreadKeep read-only access once, during setup — nothing is changed, and nothing leaves your Mac.</p></div>
+      <div class="reveal"><h3>Is it really one-time?</h3><p>Yes — $18.99 buys the app outright, with free updates throughout version 1.x. No subscription, ever.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- LEGAL -->
+<section class="legal" id="legal">
+  <div class="wrap">
+    <h2 class="reveal">Disclaimers</h2>
+    <p class="reveal"><strong>Independent product.</strong> Apple, macOS, Mac, iMessage, and Messages are trademarks of Apple Inc., registered in the U.S. and other countries. ThreadKeep is an independent application and is not affiliated with, authorized, sponsored, or endorsed by Apple Inc.</p>
+    <p class="reveal"><strong>Your data, your responsibility.</strong> ThreadKeep reads the Messages database on your own Mac and builds a local archive at your request. You are responsible for ensuring you have the right to archive, store, and export the conversations in your account, and for complying with applicable laws on storing and retaining electronic communications, which vary by jurisdiction.</p>
+    <p class="reveal"><strong>Read-only.</strong> ThreadKeep does not modify, send, or delete messages, and it does not transmit your data anywhere. It makes no network connections and collects no analytics.</p>
+    <p class="reveal"><strong>Compatibility.</strong> ThreadKeep relies on the local Messages data format, which Apple may change in future macOS releases. We support the latest macOS and the version below it; updates are issued as needed within your license.</p>
+    <p class="reveal"><strong>Refunds.</strong> If ThreadKeep doesn't work for you, email within 14 days of purchase for a full refund.</p>
+    <p class="reveal"><strong>No warranty.</strong> ThreadKeep is provided "as is," without warranty of any kind, express or implied. To the maximum extent permitted by law, the developer is not liable for any data loss or damages arising from its use. Always keep an independent backup of important data.</p>
+    <p class="reveal" style="margin-top:18px;color:var(--faint)">Payments and digital delivery are processed by our checkout provider, who acts as merchant of record and handles applicable taxes. Questions: <a href="mailto:michael.kushman@gmail.com" style="color:var(--rust)">michael.kushman@gmail.com</a>.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div class="big"><span class="mark"><svg><use href="#tk-glyph"/></svg></span>Keep every thread.</div>
+    <div style="text-align:right">
+      <a href="mailto:michael.kushman@gmail.com" class="mail">michael.kushman@gmail.com</a>
+      <div class="meta">© <span id="yr"></span> Michael Conor Kushman · <a href="https://kushman.work">kushman.work</a> · <a href="#legal">Disclaimers</a></div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+
+<script>
+  /* ============================================================
+     CHECKOUT CONFIG — set checkoutUrl to go live.
+       • Lemon Squeezy:  https://YOURSTORE.lemonsqueezy.com/buy/XXXXXXXX
+       • Paddle / Stripe Payment Link: paste the link the same way.
+     All give Apple Pay + Google Pay + cards, collect tax, and can
+     deliver the .dmg + license by email. Upload ThreadKeep-1.0.dmg
+     in that dashboard to keep the file paid-gated.
+     ============================================================ */
+  const CONFIG = {
+    price: "$18.99",
+    checkoutUrl: "",            // <-- paste your hosted checkout link here
+    successUrl: "download.html" // buyers are redirected here after payment
+  };
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const toast=document.getElementById('toast');let tt;
+  function showToast(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),4200);}
+
+  function openCheckout(){
+    const url=(CONFIG.checkoutUrl||"").trim();
+    if(!url){ showToast("Add your checkout link to CONFIG.checkoutUrl to go live (Lemon Squeezy / Paddle / Stripe)."); return; }
+    const isLS=/lemonsqueezy\.com/.test(url);
+    if(isLS && window.LemonSqueezy && window.LemonSqueezy.Url){
+      window.LemonSqueezy.Url.Open(url + (url.includes('?')?'&':'?') + 'embed=1');
+    } else { window.location.href=url; }
+  }
+  document.querySelectorAll('[data-checkout]').forEach(b=>b.addEventListener('click',openCheckout));
+
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

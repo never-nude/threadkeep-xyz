@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ThreadKeep — Download &amp; Install</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f7f4ee;--paper2:#efeae0;--card:#fff;--ink:#1d1a16;--dim:#6c645a;--faint:#9a9085;
+    --rust:#cf552c;--rust2:#b5431f;--line:#e6dfd2;--line2:#dad1c1;
+    --disp:'Space Grotesk',-apple-system,sans-serif;--body:'Hanken Grotesk',-apple-system,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace;
+    --sh:0 24px 60px -34px rgba(60,40,20,.42);--sh-sm:0 10px 26px -18px rgba(60,40,20,.40);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:760px;margin:0 auto;padding:0 26px}
+  .mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(155deg,#e2683f,#c0461f);display:inline-flex;align-items:center;justify-content:center;flex:none}
+  .mark svg{width:17px;height:17px}
+  header.nav{border-bottom:1px solid var(--line);background:var(--paper)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;max-width:1120px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--disp);font-weight:700;font-size:18px}
+  .nav a.back{color:var(--dim);font-family:var(--mono);font-size:12.5px}
+  .hero{text-align:center;padding:74px 0 14px}
+  .mark.big{width:58px;height:58px;border-radius:15px;margin:0 auto 22px}.mark.big svg{width:31px;height:31px}
+  h1{font-family:var(--disp);font-size:clamp(32px,5vw,48px);font-weight:700;letter-spacing:-.025em;margin:0 0 12px}
+  h1 .rust{color:var(--rust)}
+  .lead{color:var(--dim);font-size:18px;max-width:54ch;margin:0 auto}
+  .dlcard{background:var(--card);border:1px solid var(--line2);border-radius:20px;padding:32px;margin:36px 0;text-align:center;box-shadow:var(--sh);position:relative;overflow:hidden}
+  .dlcard::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--rust),#e2823f)}
+  .dlcard .file{font-family:var(--mono);color:var(--faint);font-size:12.5px;margin-bottom:20px;letter-spacing:.02em}
+  .btn{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:16px;padding:16px 30px;border-radius:999px;
+    background:var(--rust);color:#fff;border:none;cursor:pointer;text-decoration:none;transition:.15s;box-shadow:0 12px 24px -12px rgba(207,85,44,.7)}
+  .btn:hover{background:var(--rust2)}
+  .emailnote{color:var(--faint);font-size:14px;margin-top:16px}
+  .kick{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--rust);text-transform:uppercase;display:block;margin:40px 0 12px}
+  h2{font-family:var(--disp);font-size:26px;font-weight:600;letter-spacing:-.015em;margin:0 0 8px}
+  .steps{counter-reset:s;display:grid;gap:14px;margin-top:22px}
+  .step{position:relative;padding:20px 22px;background:var(--card);border:1px solid var(--line);border-radius:15px;box-shadow:var(--sh-sm)}
+  .step .n{counter-increment:s;font-family:var(--mono);font-size:11.5px;color:var(--rust);font-weight:600;display:block;margin-bottom:6px}
+  .step .n::before{content:"0" counter(s) " /"}
+  .step b{font-family:var(--disp);display:block;font-size:16px;font-weight:600;margin-bottom:3px}
+  .step p{margin:0;color:var(--dim);font-size:14.5px}
+  .step code{font-family:var(--mono);background:var(--paper2);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:12.5px}
+  .lic{background:var(--paper2);border:1px solid var(--line);border-radius:13px;padding:18px 20px;margin-top:26px;color:var(--dim);font-size:14px}
+  .lic b{color:var(--ink)}
+  footer{border-top:1px solid var(--line);padding:30px 0;margin-top:48px;color:var(--faint);font-family:var(--mono);font-size:12px;text-align:center}
+  footer a{color:var(--rust)}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap"><span class="brand"><span class="mark"><svg viewBox="0 0 24 24"><path d="M5 6.5h14M5 11h14M5 15.5h9" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round"/></svg></span>ThreadKeep</span><a href="threadkeep.html" class="back">← back to ThreadKeep</a></div></header>
+
+<div class="wrap">
+  <div class="hero">
+    <span class="mark big"><svg viewBox="0 0 24 24"><path d="M5 6.5h14M5 11h14M5 15.5h9" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round"/></svg></span>
+    <h1>Thank you. <span class="rust">It's yours.</span></h1>
+    <p class="lead">Your purchase is complete. Download ThreadKeep below, then follow the four steps to get set up — it takes about a minute.</p>
+  </div>
+
+  <div class="dlcard">
+    <div class="file">ThreadKeep 1.0 · Universal · macOS 13+ · ~14 MB · signed &amp; notarized</div>
+    <a id="dlbtn" class="btn" href="#">Download ThreadKeep-1.0.dmg</a>
+    <p id="emailnote" class="emailnote">Your download link and license key were also emailed to you. Can't find it? Check spam, or email <a href="mailto:michael.kushman@gmail.com">michael.kushman@gmail.com</a>.</p>
+  </div>
+
+  <span class="kick">Install</span>
+  <h2>Four steps.</h2>
+  <div class="steps">
+    <div class="step"><span class="n"></span><b>Open the disk image</b><p>Double-click <code>ThreadKeep-1.0.dmg</code>, then drag <strong>ThreadKeep</strong> into your <code>Applications</code> folder.</p></div>
+    <div class="step"><span class="n"></span><b>Launch it</b><p>Open ThreadKeep from Applications. It's signed and notarized, so it opens normally. If macOS ever hesitates, right-click the app and choose <code>Open</code> once.</p></div>
+    <div class="step"><span class="n"></span><b>Allow ThreadKeep to read Messages</b><p>macOS asks your permission first. In <code>System Settings → Privacy &amp; Security</code>, turn on the switch for ThreadKeep, then reopen the app. Access is read-only and stays on your Mac.</p></div>
+    <div class="step"><span class="n"></span><b>Import your messages</b><p>Click <strong>Import Messages</strong> to build your library — everything, or just the conversations you choose.</p></div>
+  </div>
+
+  <div class="lic"><b>Your license</b> — keep the key from your email to activate ThreadKeep and restore it on a new Mac. One purchase covers your personal Macs. Free updates throughout version 1.x.</div>
+</div>
+
+<footer>© <span id="yr"></span> Michael Conor Kushman · <a href="https://kushman.work">kushman.work</a> · <a href="mailto:michael.kushman@gmail.com">support</a></footer>
+
+<script>
+  const DOWNLOAD_URL = ""; // set if you self-host the .dmg; blank relies on the processor's emailed delivery
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  const btn=document.getElementById('dlbtn');
+  if(DOWNLOAD_URL){ btn.href=DOWNLOAD_URL; btn.setAttribute('download',''); }
+  else { btn.addEventListener('click',e=>{e.preventDefault();document.getElementById('emailnote').style.color='var(--ink)';btn.textContent='Check your email for the download link';}); }
+</script>
+</body>
+</html>
