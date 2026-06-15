@@ -65,7 +65,7 @@
   .nav-buy:hover{background:#000}
 
   section{padding:96px 0}
-  h1{font-family:var(--disp);font-size:clamp(46px,7vw,82px);font-weight:700;letter-spacing:-.03em;line-height:1.0;margin:0}
+  h1{font-family:var(--disp);font-size:clamp(46px,7vw,82px);font-weight:700;letter-spacing:-.03em;line-height:1.05;margin:0}
   h2{font-family:var(--disp);font-size:clamp(30px,4.2vw,42px);font-weight:600;letter-spacing:-.02em;line-height:1.06;margin:0 0 16px}
   h3{font-family:var(--disp);font-size:21px;font-weight:600;letter-spacing:-.01em;margin:0 0 9px}
   .lead{color:var(--dim);font-size:clamp(17px,1.9vw,20px);line-height:1.55}
@@ -183,9 +183,35 @@
 
   @media(max-width:840px){
     .pitch-grid,.fgrid,.buy-grid,.specs,.faq,.steps{grid-template-columns:1fr}
-    section{padding:66px 0}
+    section{padding:64px 0}
     .navlinks a:not(.nav-buy):not(.home){display:none}
-    .bigprice{font-size:58px}
+    .bigprice{font-size:56px}
+  }
+  @media(max-width:560px){
+    .wrap{padding:0 20px}
+    .nav .wrap{height:60px}
+    .brand{font-size:16px;gap:9px}
+    .appicon{height:26px}
+    .navlinks{gap:12px}
+    .navlinks a.home{display:none}            /* phones: just brand + Buy */
+    .nav-buy{padding:8px 14px;font-size:13.5px}
+    h1{font-size:clamp(32px,8.6vw,46px);line-height:1.08}
+    .hero{padding:38px 0 36px}
+    .hero .appicon.big{height:68px;margin-bottom:18px}
+    .hero h1{max-width:18ch}
+    .hero .lead{font-size:16.5px;margin-top:18px}
+    .cta-row{flex-direction:column;gap:10px}
+    .cta-row .btn{width:100%;justify-content:center}
+    .micro{font-size:12px}
+    h2{font-size:clamp(25px,6.6vw,32px);line-height:1.12}
+    h3{font-size:19px}
+    .bigprice{font-size:48px}
+    section{padding:52px 0}
+    .fcard{padding:22px}
+    .price-pill{font-size:12px;padding:7px 13px}
+    .legal .wrap{padding:46px 20px}
+    .foot{flex-direction:column;align-items:flex-start;gap:14px}
+    .foot>div{text-align:left !important}
   }
 </style>
 </head>
