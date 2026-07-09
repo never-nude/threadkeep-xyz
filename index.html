@@ -235,7 +235,7 @@
       <a href="/downloads/ThreadKeep-1.0b1.dmg" download class="btn btn-fill">Download ThreadKeep beta</a>
       <a href="#features" class="btn btn-out">See how it works</a>
     </div>
-    <p class="micro">macOS 13 Ventura+ · Apple silicon &amp; Intel · works fully offline · 1.0 beta 1 · 1.8 MB</p>
+    <p class="micro">macOS 13 Ventura+ · Apple silicon &amp; Intel · works fully offline · 1.0 beta 1 · 2.9 MB</p>
     <div class="hero-shot frame reveal"><img src="./web/02-interface-search.jpg" alt="ThreadKeep main window — conversation list, an open thread, and live search across messages"></div>
   </div>
 </section>
@@ -314,10 +314,10 @@
 
     <div class="checkout reveal">
       <h3>Direct download</h3>
-      <a class="dl-btn" href="/downloads/ThreadKeep-1.0b1.dmg" download>Download ThreadKeep-1.0b1.dmg · 1.8 MB</a>
+      <a class="dl-btn" href="/downloads/ThreadKeep-1.0b1.dmg" download>Download ThreadKeep-1.0b1.dmg · 2.9 MB</a>
       <div class="dl-hash">
         <span class="lbl">sha-256</span>
-        <code>ff09a1462678aa0d9960541d31a8bc62b5f23838d016c9d03cd9c3fe724c08f6</code>
+        <code>76c795a9670c5f72bbc8746c416af7cb5c03e35bd1780b165963d920a9fecc4a</code>
         <span class="sub">macOS 13+ · Universal · signed &amp; notarized</span>
       </div>
       <p class="paynote">Your download is for you — please don't re-host or share the .dmg; send friends to threadkeep.xyz instead. Beta software — if something breaks or looks wrong, email <a href="mailto:michael.kushman@gmail.com" style="color:var(--rust)">michael.kushman@gmail.com</a>.</p>
@@ -348,7 +348,7 @@
     <dl class="specs reveal">
       <div><dt>platform</dt><dd>macOS 13 Ventura or later</dd></div>
       <div><dt>architecture</dt><dd>Universal — Apple silicon &amp; Intel</dd></div>
-      <div><dt>download_size</dt><dd>~1.8 MB</dd></div>
+      <div><dt>download_size</dt><dd>~2.9 MB</dd></div>
       <div><dt>distribution</dt><dd>Signed &amp; notarized .dmg</dd></div>
       <div><dt>built_with</dt><dd>Swift &amp; SwiftUI, native</dd></div>
       <div><dt>source_data</dt><dd>Messages on this Mac (read-only)</dd></div>
@@ -407,7 +407,7 @@
 
   const toast=document.getElementById('toast');let tt;
   function showToast(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),4200);}
-  document.querySelectorAll('a[download]').forEach(a=>a.addEventListener('click',()=>showToast('Downloading ThreadKeep-1.0b1.dmg (1.8 MB) — check your Downloads folder.')));
+  document.querySelectorAll('a[download]').forEach(a=>a.addEventListener('click',()=>showToast('Downloading ThreadKeep-1.0b1.dmg (2.9 MB) — check your Downloads folder.')));
 
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
