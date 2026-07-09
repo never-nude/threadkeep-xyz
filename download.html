@@ -60,13 +60,13 @@
   <div class="hero">
     <img class="appicon big" src="./web/threadkeep-bubble.png" alt="ThreadKeep app icon">
     <h1>Thank you. <span class="rust">It's yours.</span></h1>
-    <p class="lead">Your purchase is complete. The download is coming soon — once it's available, follow the four steps to get set up; it takes about a minute.</p>
+    <p class="lead">Your purchase is complete. Download ThreadKeep below, then follow the four steps to get set up — it takes about a minute.</p>
   </div>
 
   <div class="dlcard">
-    <div class="file">Free download coming soon</div>
-    <span id="dlbtn" class="btn" aria-disabled="true" style="cursor:default">Coming soon</span>
-    <p id="emailnote" class="emailnote">Questions in the meantime? Email <a href="mailto:michael.kushman@gmail.com">michael.kushman@gmail.com</a>.</p>
+    <div class="file">ThreadKeep 1.0 · Universal · macOS 13+ · ~14 MB · signed &amp; notarized</div>
+    <a id="dlbtn" class="btn" href="#">Download ThreadKeep-1.0.dmg</a>
+    <p id="emailnote" class="emailnote">Your download link and license key were also emailed to you. Can't find it? Check spam, or email <a href="mailto:michael.kushman@gmail.com">michael.kushman@gmail.com</a>.</p>
   </div>
 
   <span class="kick">Install</span>
@@ -84,8 +84,11 @@
 <footer>© <span id="yr"></span> Michael Conor Kushman · <a href="https://kushman.work">kushman.work</a> · <a href="mailto:michael.kushman@gmail.com">support</a></footer>
 
 <script>
-  const DOWNLOAD_URL = ""; // download disabled — coming soon
+  const DOWNLOAD_URL = ""; // set if you self-host the .dmg; blank relies on the processor's emailed delivery
   document.getElementById('yr').textContent=new Date().getFullYear();
+  const btn=document.getElementById('dlbtn');
+  if(DOWNLOAD_URL){ btn.href=DOWNLOAD_URL; btn.setAttribute('download',''); }
+  else { btn.addEventListener('click',e=>{e.preventDefault();document.getElementById('emailnote').style.color='var(--ink)';btn.textContent='Check your email for the download link';}); }
 </script>
 </body>
 </html>
