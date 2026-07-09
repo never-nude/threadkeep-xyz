@@ -5,24 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="./web/threadkeep-icon-180.png">
 <link rel="apple-touch-icon" href="./web/threadkeep-icon-180.png">
-<title>ThreadKeep — Keep every thread. A macOS iMessage archiver.</title>
-<meta name="description" content="ThreadKeep archives your iMessage history into a durable, searchable record you own. Local-first, no subscription. One-time $18.99.">
+<title>ThreadKeep — Keep every thread. Free beta for macOS.</title>
+<meta name="description" content="ThreadKeep archives your iMessage history into a durable, searchable record you own. Local-first, no account, no subscription. Free public beta for macOS.">
 <link rel="canonical" href="https://threadkeep.xyz/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://threadkeep.xyz/">
 <meta property="og:site_name" content="ThreadKeep">
-<meta property="og:title" content="ThreadKeep — Keep every thread.">
-<meta property="og:description" content="Archive iMessage into a durable, searchable record you own. Local-first, no subscription. $18.99 once.">
+<meta property="og:title" content="ThreadKeep — Keep every thread. Free beta for macOS.">
+<meta property="og:description" content="Archive iMessage into a durable, searchable record you own. Local-first, no account. Free public beta.">
 <meta property="og:image" content="https://threadkeep.xyz/web/02-interface-search.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ThreadKeep — Keep every thread.">
-<meta name="twitter:description" content="Archive iMessage into a durable, searchable record you own. Local-first, no subscription. $18.99 once.">
+<meta name="twitter:title" content="ThreadKeep — Keep every thread. Free beta for macOS.">
+<meta name="twitter:description" content="Archive iMessage into a durable, searchable record you own. Local-first, no account. Free public beta.">
 <meta name="twitter:image" content="https://threadkeep.xyz/web/02-interface-search.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<!-- Lemon Squeezy overlay checkout (harmless if you use a Stripe/Paddle link instead) -->
-<script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
 <style>
   :root{
     --paper:#f5f5fb; --paper2:#ecebf6; --card:#ffffff;
@@ -117,7 +115,6 @@
   .buy{background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .buy-grid{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
   .bigprice{font-family:var(--disp);font-size:72px;font-weight:700;letter-spacing:-.04em;line-height:1;margin:14px 0 4px}
-  .bigprice small{font-size:20px;font-weight:500;color:var(--faint)}
   .once{font-family:var(--mono);color:var(--rust);font-weight:500;font-size:13px;letter-spacing:.05em;text-transform:uppercase}
   .incl{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:12px}
   .incl li{position:relative;padding-left:28px;color:var(--dim);font-size:15.5px}
@@ -126,20 +123,13 @@
   .checkout{background:var(--card);border:1px solid var(--line2);border-radius:20px;padding:30px;box-shadow:var(--sh);position:relative;overflow:hidden}
   .checkout::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--rust),var(--plum))}
   .checkout h3{font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);font-weight:500;margin:6px 0 18px}
-  .pay{display:grid;gap:11px}
-  .pay-wallets{display:grid;grid-template-columns:1fr 1fr;gap:11px}
-  .pay button{width:100%;border:none;cursor:pointer;font-family:var(--body);font-weight:600;
-    font-size:16px;padding:15px;border-radius:13px;display:flex;align-items:center;justify-content:center;gap:8px;transition:.15s}
-  .pay .apple{background:#000;color:#fff}.pay .apple:hover{background:#1a1a1a}
-  .pay .gpay{background:#fff;color:#3c4043;border:1px solid #dadce0}.pay .gpay:hover{box-shadow:0 1px 6px rgba(0,0,0,.12)}
-  .pay .paypal{background:#ffc439}.pay .paypal:hover{background:#f0b32d}
-  .pay .paypal .pp1{color:#003087;font-weight:800;font-style:italic}.pay .paypal .pp2{color:#0070ba;font-weight:800;font-style:italic}
-  .pay .venmo{background:#008CFF;color:#fff;font-weight:700;font-style:italic;letter-spacing:.01em}.pay .venmo:hover{background:#0a7ce0}
-  .pay .card{background:var(--rust);color:#fff}.pay .card:hover{background:var(--rust2)}
-  .lbrand-b{color:#4285F4}.lbrand-r{color:#EA4335}.lbrand-y{color:#FBBC05}.lbrand-g{color:#34A853}
-  .appllogo{font-size:17px;transform:translateY(-1px)}
-  .marks{display:flex;gap:8px;justify-content:center;margin-top:15px;flex-wrap:wrap}
-  .marks span{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--faint);border:1px solid var(--line2);border-radius:5px;padding:4px 8px;text-transform:uppercase}
+  .dl-btn{display:flex;width:100%;align-items:center;justify-content:center;gap:9px;background:var(--rust);color:#fff;
+    font-weight:600;font-size:16px;padding:15px;border-radius:13px;transition:.15s;box-shadow:0 12px 24px -12px rgba(118,102,219,.55)}
+  .dl-btn:hover{background:var(--rust2)}
+  .dl-hash{font-family:var(--mono);background:var(--paper2);border:1px solid var(--line);border-radius:11px;padding:13px 15px;margin-top:14px;line-height:1.7}
+  .dl-hash .lbl{display:block;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--faint)}
+  .dl-hash code{display:block;font-size:11.5px;color:var(--ink);word-break:break-all;-webkit-user-select:all;user-select:all}
+  .dl-hash .sub{display:block;font-size:11px;color:var(--dim);margin-top:6px}
   .paynote{color:var(--faint);font-size:12.5px;text-align:center;margin-top:15px;line-height:1.5}
 
   /* install */
@@ -224,7 +214,7 @@
       <a href="#features">Features</a>
       <a href="#install">Install</a>
       <a href="https://kushman.work" class="home">↩ kushman.work</a>
-      <a href="#buy" class="nav-buy">Buy — $18.99</a>
+      <a href="#download" class="nav-buy">Download beta — Free</a>
     </nav>
   </div>
 </header>
@@ -233,15 +223,15 @@
 <section class="hero">
   <div class="wrap">
     <img class="appicon big" src="./web/threadkeep-bubble.png" alt="ThreadKeep app icon">
-    <span class="kick"><span class="slash">//</span> macOS · iMessage archiver</span>
+    <span class="kick"><span class="slash">//</span> macOS · iMessage archiver · public beta</span>
     <h1>Keep every <span class="rust">thread.</span></h1>
     <p class="lead">ThreadKeep pulls your iMessage history out of a database you can't see and into a library you own — browsable, fully searchable, and stored on your Mac. The conversations that would otherwise quietly disappear.</p>
-    <div class="price-pill">One-time <b>$18.99</b> · no subscription · free 1.x updates</div>
+    <div class="price-pill"><b>Free public beta</b> · no subscription · no account</div>
     <div class="cta-row">
-      <button class="btn btn-fill" data-checkout>Buy ThreadKeep</button>
+      <a href="/downloads/ThreadKeep-1.0b1.dmg" download class="btn btn-fill">Download ThreadKeep beta</a>
       <a href="#features" class="btn btn-out">See how it works</a>
     </div>
-    <p class="micro">macOS 13 Ventura+ · Apple silicon &amp; Intel · works fully offline</p>
+    <p class="micro">macOS 13 Ventura+ · Apple silicon &amp; Intel · works fully offline · 1.0 beta 1 · 1.8 MB</p>
     <div class="hero-shot frame reveal"><img src="./web/02-interface-search.jpg" alt="ThreadKeep main window — conversation list, an open thread, and live search across messages"></div>
   </div>
 </section>
@@ -300,36 +290,32 @@
   </div>
 </section>
 
-<!-- 03 BUY -->
-<section class="buy" id="buy">
+<!-- 03 DOWNLOAD -->
+<section class="buy" id="download">
   <div class="wrap buy-grid">
     <div class="reveal">
-      <span class="kick"><span class="slash">//</span> 03 — One price</span>
-      <h2>Buy once. Keep forever.</h2>
-      <div class="bigprice">$18.99 <small>USD</small></div>
-      <div class="once">One-time purchase · no subscription</div>
+      <span class="kick"><span class="slash">//</span> 03 — Free beta</span>
+      <h2>Free while it's in beta.</h2>
+      <div class="bigprice">Free</div>
+      <div class="once">Public beta · no subscription · no account</div>
       <ul class="incl">
-        <li>Lifetime license — yours to keep</li>
-        <li>Free updates throughout version 1.x</li>
+        <li>The full app — nothing gated</li>
+        <li>Developer ID signed &amp; notarized by Apple</li>
         <li>Unlimited conversations and exports</li>
-        <li>Signed &amp; notarized — instant download after payment</li>
-        <li>14-day money-back guarantee</li>
+        <li>100% local — no account, no telemetry</li>
+        <li>ThreadKeep 1.0 will be a one-time $18.99 purchase</li>
       </ul>
     </div>
 
     <div class="checkout reveal">
-      <h3>Instant checkout</h3>
-      <div class="pay">
-        <div class="pay-wallets">
-          <button class="apple" data-checkout data-method="Apple Pay"><span class="appllogo"></span> Pay</button>
-          <button class="gpay" data-checkout data-method="Google Pay"><span class="lbrand-b">G</span><span class="lbrand-r">o</span><span class="lbrand-y">o</span><span class="lbrand-b">g</span><span class="lbrand-g">l</span><span class="lbrand-r">e</span>&nbsp;Pay</button>
-          <button class="paypal" data-checkout data-method="PayPal"><span class="pp1">Pay</span><span class="pp2">Pal</span></button>
-          <button class="venmo" data-checkout data-method="Venmo">venmo</button>
-        </div>
-        <button class="card" data-checkout data-method="card">Buy with card — $18.99</button>
+      <h3>Direct download</h3>
+      <a class="dl-btn" href="/downloads/ThreadKeep-1.0b1.dmg" download>Download ThreadKeep-1.0b1.dmg · 1.8 MB</a>
+      <div class="dl-hash">
+        <span class="lbl">sha-256</span>
+        <code>ff09a1462678aa0d9960541d31a8bc62b5f23838d016c9d03cd9c3fe724c08f6</code>
+        <span class="sub">macOS 13+ · Universal · signed &amp; notarized</span>
       </div>
-      <div class="marks"><span>Visa</span><span>Mastercard</span><span>Amex</span><span>PayPal</span><span>Venmo</span><span>Apple&nbsp;Pay</span><span>Google&nbsp;Pay</span></div>
-      <p class="paynote">Secure one-time payment. Apple Pay, Google Pay, PayPal, and Venmo appear automatically where supported. Your download link and license arrive by email the moment payment clears.</p>
+      <p class="paynote">Beta software — if something breaks or looks wrong, email <a href="mailto:michael.kushman@gmail.com" style="color:var(--rust)">michael.kushman@gmail.com</a>.</p>
     </div>
   </div>
 </section>
@@ -339,9 +325,9 @@
   <div class="wrap">
     <span class="kick reveal"><span class="slash">//</span> 04 — Installation</span>
     <h2 class="reveal">Up and running in a minute.</h2>
-    <p class="lead reveal">After purchase you'll get <strong style="color:var(--ink)">ThreadKeep-1.0.dmg</strong> by email and on the download page.</p>
+    <p class="lead reveal">Download <strong style="color:var(--ink)">ThreadKeep-1.0b1.dmg</strong> above — no email, no license key, no account.</p>
     <div class="steps reveal">
-      <div class="step"><span class="n"></span><b>Open the disk image</b><p>Double-click <code>ThreadKeep-1.0.dmg</code>, then drag <strong>ThreadKeep</strong> into your <code>Applications</code> folder.</p></div>
+      <div class="step"><span class="n"></span><b>Open the disk image</b><p>Double-click <code>ThreadKeep-1.0b1.dmg</code>, then drag <strong>ThreadKeep</strong> into your <code>Applications</code> folder.</p></div>
       <div class="step"><span class="n"></span><b>Launch it</b><p>Open ThreadKeep from Applications. It's signed and notarized by Apple, so it opens normally. If macOS ever hesitates, right-click the app and choose <code>Open</code> once.</p></div>
       <div class="step"><span class="n"></span><b>Allow ThreadKeep to read Messages</b><p>macOS asks your permission before any app can read Messages. In <code>System Settings → Privacy &amp; Security</code>, turn on the switch for ThreadKeep, then reopen the app. Access is read-only and never leaves your Mac.</p></div>
       <div class="step"><span class="n"></span><b>Import your messages</b><p>Click <strong>Import Messages</strong> to build your library — everything, or just the conversations you choose. That's it.</p></div>
@@ -357,7 +343,7 @@
     <dl class="specs reveal">
       <div><dt>platform</dt><dd>macOS 13 Ventura or later</dd></div>
       <div><dt>architecture</dt><dd>Universal — Apple silicon &amp; Intel</dd></div>
-      <div><dt>download_size</dt><dd>~14 MB</dd></div>
+      <div><dt>download_size</dt><dd>~1.8 MB</dd></div>
       <div><dt>distribution</dt><dd>Signed &amp; notarized .dmg</dd></div>
       <div><dt>built_with</dt><dd>Swift &amp; SwiftUI, native</dd></div>
       <div><dt>source_data</dt><dd>Messages on this Mac (read-only)</dd></div>
@@ -366,7 +352,7 @@
       <div><dt>privacy</dt><dd>100% on-device · no account · no telemetry</dd></div>
       <div><dt>network_use</dt><dd>None — works fully offline</dd></div>
       <div><dt>languages</dt><dd>English</dd></div>
-      <div><dt>version · license</dt><dd>1.0 · one-time purchase</dd></div>
+      <div><dt>version · license</dt><dd>1.0 beta 1 · free during beta</dd></div>
     </dl>
   </div>
 </section>
@@ -379,7 +365,8 @@
       <div class="reveal"><h3>Does it change my messages?</h3><p>No. ThreadKeep only reads the Messages database on your Mac. It never sends, edits, or deletes anything.</p></div>
       <div class="reveal"><h3>Where is my data stored?</h3><p>Entirely on your Mac, in a local library. Nothing is uploaded, and there's no account to create.</p></div>
       <div class="reveal"><h3>Why does macOS ask for permission?</h3><p>macOS keeps Messages in a protected area, so it asks your OK before any app can read it. You give ThreadKeep read-only access once, during setup — nothing is changed, and nothing leaves your Mac.</p></div>
-      <div class="reveal"><h3>Is it really one-time?</h3><p>Yes — $18.99 buys the app outright, with free updates throughout version 1.x. No subscription, ever.</p></div>
+      <div class="reveal"><h3>Why is the beta free?</h3><p>The beta is the full app — nothing held back. It's free while ThreadKeep is polished toward 1.0. ThreadKeep 1.0 will be a one-time $18.99 purchase; no subscription, ever.</p></div>
+      <div class="reveal"><h3>What happens to my library after the beta?</h3><p>Nothing — your library is a set of plain records on your Mac. Nothing expires or locks, and ThreadKeep 1.0 reads the same library.</p></div>
     </div>
   </div>
 </section>
@@ -391,10 +378,10 @@
     <p class="reveal"><strong>Independent product.</strong> Apple, macOS, Mac, iMessage, and Messages are trademarks of Apple Inc., registered in the U.S. and other countries. ThreadKeep is an independent application and is not affiliated with, authorized, sponsored, or endorsed by Apple Inc.</p>
     <p class="reveal"><strong>Your data, your responsibility.</strong> ThreadKeep reads the Messages database on your own Mac and builds a local archive at your request. You are responsible for ensuring you have the right to archive, store, and export the conversations in your account, and for complying with applicable laws on storing and retaining electronic communications, which vary by jurisdiction.</p>
     <p class="reveal"><strong>Read-only.</strong> ThreadKeep does not modify, send, or delete messages, and it does not transmit your data anywhere. It makes no network connections and collects no analytics.</p>
-    <p class="reveal"><strong>Compatibility.</strong> ThreadKeep relies on the local Messages data format, which Apple may change in future macOS releases. We support the latest macOS and the version below it; updates are issued as needed within your license.</p>
-    <p class="reveal"><strong>Refunds.</strong> If ThreadKeep doesn't work for you, email within 14 days of purchase for a full refund.</p>
+    <p class="reveal"><strong>Compatibility.</strong> ThreadKeep relies on the local Messages data format, which Apple may change in future macOS releases. We support the latest macOS and the version below it; updates are issued as needed.</p>
+    <p class="reveal"><strong>Beta software.</strong> ThreadKeep is currently pre-release software. It may contain bugs, and details may change before 1.0. Keep an independent backup of anything important.</p>
     <p class="reveal"><strong>No warranty.</strong> ThreadKeep is provided "as is," without warranty of any kind, express or implied. To the maximum extent permitted by law, the developer is not liable for any data loss or damages arising from its use. Always keep an independent backup of important data.</p>
-    <p class="reveal" style="margin-top:18px;color:var(--faint)">Payments and digital delivery are processed by our checkout provider, who acts as merchant of record and handles applicable taxes. Questions: <a href="mailto:michael.kushman@gmail.com" style="color:var(--rust)">michael.kushman@gmail.com</a>.</p>
+    <p class="reveal" style="margin-top:18px;color:var(--faint)">ThreadKeep is currently distributed as a free public beta. No payments are collected. Questions: <a href="mailto:michael.kushman@gmail.com" style="color:var(--rust)">michael.kushman@gmail.com</a>.</p>
   </div>
 </section>
 
@@ -411,34 +398,11 @@
 <div id="toast"></div>
 
 <script>
-  /* ============================================================
-     CHECKOUT CONFIG — set checkoutUrl to go live.
-       • Lemon Squeezy:  https://YOURSTORE.lemonsqueezy.com/buy/XXXXXXXX
-       • Paddle / Stripe Payment Link: paste the link the same way.
-     All give Apple Pay + Google Pay + cards, collect tax, and can
-     deliver the .dmg + license by email. Upload ThreadKeep-1.0.dmg
-     in that dashboard to keep the file paid-gated.
-     ============================================================ */
-  const CONFIG = {
-    price: "$18.99",
-    checkoutUrl: "",            // <-- paste your hosted checkout link here
-    successUrl: "download.html" // buyers are redirected here after payment
-  };
-
   document.getElementById('yr').textContent = new Date().getFullYear();
 
   const toast=document.getElementById('toast');let tt;
   function showToast(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),4200);}
-
-  function openCheckout(){
-    const url=(CONFIG.checkoutUrl||"").trim();
-    if(!url){ showToast("Add your checkout link to CONFIG.checkoutUrl to go live (Lemon Squeezy / Paddle / Stripe)."); return; }
-    const isLS=/lemonsqueezy\.com/.test(url);
-    if(isLS && window.LemonSqueezy && window.LemonSqueezy.Url){
-      window.LemonSqueezy.Url.Open(url + (url.includes('?')?'&':'?') + 'embed=1');
-    } else { window.location.href=url; }
-  }
-  document.querySelectorAll('[data-checkout]').forEach(b=>b.addEventListener('click',openCheckout));
+  document.querySelectorAll('a[download]').forEach(a=>a.addEventListener('click',()=>showToast('Downloading ThreadKeep-1.0b1.dmg (1.8 MB) — check your Downloads folder.')));
 
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
