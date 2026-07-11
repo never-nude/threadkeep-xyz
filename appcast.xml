@@ -23,6 +23,28 @@
     <language>en</language>
 
     <item>
+      <title>ThreadKeep 1.0b5</title>
+      <pubDate>Sat, 11 Jul 2026 13:03:49 -0400</pubDate>
+      <sparkle:version>5</sparkle:version>
+      <sparkle:shortVersionString>1.0b5</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[
+        <h2>What's new in 1.0b5</h2>
+        <ul>
+          <li>Clearer in-conversation search: the match you're on is highlighted in bright amber with a soft outline and a brief arrival glow, other matches stay visible in a softer amber, and the "N of M matches" counter tracks your position as you jump between results.</li>
+          <li>Search highlights are now legible everywhere — light and dark mode, and on your own sent messages.</li>
+          <li>Fixed message bubbles staying dark after switching to light mode.</li>
+          <li>Reduce Motion is respected: the arrival glow is skipped entirely.</li>
+        </ul>
+      ]]></description>
+      <enclosure
+        url="https://threadkeep.xyz/downloads/ThreadKeep-1.0b5.dmg"
+        length="4156182"
+        type="application/octet-stream"
+        sparkle:edSignature="GIIyiBnATbLO4frTB492Gh5nhZeHMW0AOTUF5wyUI8heaQj4nNKmvD+sabNcpal2Jqfaf/IY9co2lUO2rXKFAw==" />
+    </item>
+
+    <item>
       <title>ThreadKeep 1.0b4</title>
       <pubDate>Sat, 11 Jul 2026 11:21:40 -0400</pubDate>
       <sparkle:version>4</sparkle:version>
