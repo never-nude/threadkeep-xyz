@@ -23,6 +23,25 @@
     <language>en</language>
 
     <item>
+      <title>ThreadKeep 1.0b6</title>
+      <pubDate>Sat, 11 Jul 2026 15:17:51 -0400</pubDate>
+      <sparkle:version>6</sparkle:version>
+      <sparkle:shortVersionString>1.0b6</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[
+        <h2>What's new in 1.0b6</h2>
+        <ul>
+          <li>The outline around the search match you're on is now clearly visible in both light and dark mode.</li>
+        </ul>
+      ]]></description>
+      <enclosure
+        url="https://threadkeep.xyz/downloads/ThreadKeep-1.0b6.dmg"
+        length="4156948"
+        type="application/octet-stream"
+        sparkle:edSignature="xFbBwFi5kMFBUhpzp9E3iI3cB9/20u7gIDYgEy4QRTTMLyjU7npm7vGbwOljFt1Tr1wfrvygFD8G5h8AqiWaBg==" />
+    </item>
+
+    <item>
       <title>ThreadKeep 1.0b5</title>
       <pubDate>Sat, 11 Jul 2026 13:03:49 -0400</pubDate>
       <sparkle:version>5</sparkle:version>
