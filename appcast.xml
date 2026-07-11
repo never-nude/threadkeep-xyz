@@ -23,6 +23,26 @@
     <language>en</language>
 
     <item>
+      <title>ThreadKeep 1.0b8</title>
+      <pubDate>Sat, 11 Jul 2026 16:50:25 -0400</pubDate>
+      <sparkle:version>8</sparkle:version>
+      <sparkle:shortVersionString>1.0b8</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[
+        <h2>What's new in 1.0b8</h2>
+        <ul>
+          <li>Contact names and photos now appear reliably once you allow Contacts access — fixing an issue that left conversations showing only phone numbers even after granting permission.</li>
+          <li>Granting Contacts access while ThreadKeep is open now takes effect immediately, without a relaunch.</li>
+        </ul>
+      ]]></description>
+      <enclosure
+        url="https://threadkeep.xyz/downloads/ThreadKeep-1.0b8.dmg"
+        length="4166284"
+        type="application/octet-stream"
+        sparkle:edSignature="lixniMHUrWMW6bQhzS/b4+VKkrroIPCooD5yVFCoEsEHEhrKr1dNZzhCnBjrXVa2GVTFZyOg9Z33NLlLW6m6BA==" />
+    </item>
+
+    <item>
       <title>ThreadKeep 1.0b7</title>
       <pubDate>Sat, 11 Jul 2026 16:05:06 -0400</pubDate>
       <sparkle:version>7</sparkle:version>
