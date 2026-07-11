@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="./web/threadkeep-icon-180.png">
+<link rel="apple-touch-icon" href="./web/threadkeep-icon-180.png">
+<title>ThreadKeep — Privacy</title>
+<link rel="canonical" href="https://threadkeep.xyz/privacy.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f5f5fb;--paper2:#ecebf6;--card:#fff;--ink:#1f1c2e;--dim:#6a6580;--faint:#9c95ad;
+    --rust:#7666db;--rust2:#5f4fc4;--plum:#e365a8;--line:#e6e3f2;--line2:#d9d5ec;
+    --disp:'Space Grotesk',-apple-system,sans-serif;--body:'Hanken Grotesk',-apple-system,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--rust)}
+  .wrap{max-width:760px;margin:0 auto;padding:0 26px}
+  .appicon{height:31px;width:auto;display:block;flex:none}
+  header.nav{border-bottom:1px solid var(--line);background:var(--paper)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;max-width:1120px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--disp);font-weight:700;font-size:18px;color:var(--ink)}
+  .nav a.back{color:var(--dim);font-family:var(--mono);font-size:12.5px;text-decoration:none}
+  h1{font-family:var(--disp);font-size:clamp(30px,5vw,42px);font-weight:700;letter-spacing:-.02em;margin:56px 0 10px}
+  .lead{color:var(--dim);font-size:17px;max-width:58ch}
+  .kick{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--rust);text-transform:uppercase;display:block;margin:42px 0 10px}
+  p,li{color:var(--dim);font-size:15px}
+  strong{color:var(--ink)}
+  ul{padding-left:22px;margin:8px 0}
+  footer{border-top:1px solid var(--line);padding:30px 0;margin-top:64px;color:var(--faint);font-family:var(--mono);font-size:12px;text-align:center}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap"><a class="brand" href="/" style="text-decoration:none"><img class="appicon" src="./web/threadkeep-bubble.png" alt="ThreadKeep app icon">ThreadKeep</a><a href="/" class="back">← back to ThreadKeep</a></div></header>
+
+<div class="wrap">
+  <h1>Privacy</h1>
+  <p class="lead">ThreadKeep is built local-first. The short version: your messages stay on your Mac, and ThreadKeep has no way to see them.</p>
+
+  <span class="kick">What ThreadKeep does with your messages</span>
+  <p>ThreadKeep reads the Messages database that already lives on your Mac and builds a library you own, stored on your Mac. It works on a <strong>copy</strong> of that database and opens it <strong>read-only</strong> — it never modifies, sends, or deletes anything in Messages itself.</p>
+  <p>There is <strong>no account, no sign-in, no analytics, and no telemetry</strong>. Your messages, contacts, and attachments are never uploaded anywhere.</p>
+
+  <span class="kick">The permissions it asks for</span>
+  <ul>
+    <li><strong>Full Disk Access</strong> — macOS requires this for any app to read the Messages database. ThreadKeep uses it only to copy that database when you choose to import. You grant and revoke it in System Settings at any time.</li>
+    <li><strong>Contacts (optional)</strong> — if you turn on contact names, ThreadKeep uses the Contacts already on your Mac to label conversations with names and photos instead of raw numbers. All of that matching happens on your Mac. Leave it off and ThreadKeep simply shows numbers and addresses.</li>
+  </ul>
+
+  <span class="kick">The one network feature, and it's opt-in</span>
+  <p>ThreadKeep can check for app updates, and only if you say yes. An update check fetches a small static version file (<span style="font-family:var(--mono);font-size:13px">appcast.xml</span>) from threadkeep.xyz and, if you accept an update, the new app itself. It sends nothing about you or your library — no identifiers, no usage data. Never enable it and ThreadKeep makes no network connections at all.</p>
+
+  <span class="kick">Your data, your delete key</span>
+  <p>Everything ThreadKeep builds lives in its library folder on your Mac (you can open it from Settings). Delete that library — from inside the app or by removing the folder — and everything ThreadKeep ever stored is gone. There's no server copy, because there's no server.</p>
+
+  <span class="kick">Questions</span>
+  <p>Ask anything via <a href="/#legal">the disclaimers section</a> or the in-app <strong>Help → Contact Support…</strong> form, which sends only what you type plus basic version info — that's spelled out in the form itself.</p>
+</div>
+
+<footer>© <span id="yr"></span> Michael Conor Kushman · <a href="/">threadkeep.xyz</a></footer>
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
