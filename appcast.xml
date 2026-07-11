@@ -23,6 +23,25 @@
     <language>en</language>
 
     <item>
+      <title>ThreadKeep 1.0b7</title>
+      <pubDate>Sat, 11 Jul 2026 16:05:06 -0400</pubDate>
+      <sparkle:version>7</sparkle:version>
+      <sparkle:shortVersionString>1.0b7</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[
+        <h2>What's new in 1.0b7</h2>
+        <ul>
+          <li>Contact names and photos now appear whenever you've allowed Contacts access — including macOS's limited (selected-contacts) access, which previously showed only phone numbers.</li>
+        </ul>
+      ]]></description>
+      <enclosure
+        url="https://threadkeep.xyz/downloads/ThreadKeep-1.0b7.dmg"
+        length="4158407"
+        type="application/octet-stream"
+        sparkle:edSignature="+OJVEqKuwMq4z0hKHs1DPCrWWvm/EHSfGTDei7n8Uj/ipu7nBDwD5NPEenuKDPCO5jK4TXPQeUbAV1HDARp0Bw==" />
+    </item>
+
+    <item>
       <title>ThreadKeep 1.0b6</title>
       <pubDate>Sat, 11 Jul 2026 15:17:51 -0400</pubDate>
       <sparkle:version>6</sparkle:version>
