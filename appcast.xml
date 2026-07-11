@@ -23,6 +23,25 @@
     <language>en</language>
 
     <item>
+      <title>ThreadKeep 1.0b4</title>
+      <pubDate>Sat, 11 Jul 2026 11:21:40 -0400</pubDate>
+      <sparkle:version>4</sparkle:version>
+      <sparkle:shortVersionString>1.0b4</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[
+        <h2>What's new in 1.0b4</h2>
+        <ul>
+          <li>More reliable contact matching: conversations merge only when they are truly the same person. Shared phone numbers (family landlines, work mains) no longer guess between contacts, look-alike international numbers can never mix threads, and people without a Contacts card now get their +1/bare number variants merged.</li>
+        </ul>
+      ]]></description>
+      <enclosure
+        url="https://threadkeep.xyz/downloads/ThreadKeep-1.0b4.dmg"
+        length="4023059"
+        type="application/octet-stream"
+        sparkle:edSignature="29n9FalTVPlqyVI5gqUxPALwmzfvcbGvR/xlUQUi/scDadjDkVA94W7j6wfZhmC/xGIHMJ/R1zOpCTskk41ECw==" />
+    </item>
+
+    <item>
       <title>ThreadKeep 1.0b3</title>
       <pubDate>Fri, 10 Jul 2026 19:21:28 -0400</pubDate>
       <sparkle:version>3</sparkle:version>
