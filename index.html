@@ -278,7 +278,7 @@
       <div class="fcard reveal">
         <div class="flabel">Feature 03 — Privacy</div>
         <h3>Local-first, by design</h3>
-        <p>Your library never leaves your Mac. ThreadKeep has no account and collects nothing — there's no telemetry to opt out of. Its only network use is an optional, off-by-default update check that fetches a static version file from threadkeep.xyz and sends nothing about you or your data. Exports happen only when you ask. Using contact names is optional, and you can change it later.</p>
+        <p>Your messages and imported archive stay on your Mac. ThreadKeep has no account and collects nothing — there's no telemetry to opt out of. ThreadKeep does not use the network while importing, searching, reading, or exporting your archive. It connects only when you explicitly check for updates or submit the in-app support form. Exports happen only when you ask. Using contact names is optional, and you can change it later.</p>
         <div class="tags"><span>ON-DEVICE</span><span>NO ACCOUNT</span></div>
         <div class="shot"><img src="./web/01-onboarding-privacy.jpg" alt="ThreadKeep onboarding screen explaining the library stays on your Mac and exports happen only when you choose"></div>
       </div>
@@ -286,7 +286,7 @@
       <div class="fcard reveal">
         <div class="flabel">Feature 04 — Setup</div>
         <h3>A guided, one-time import</h3>
-        <p>A short guided import brings your conversations in automatically — everything, or just the ones you choose. Set it up once in under a minute, then never think about it again.</p>
+        <p>Setup takes about a minute. The import then runs on its own, and how long it takes depends on how much message history you have.</p>
         <div class="tags"><span>ONE-TIME IMPORT</span><span>SELECTIVE</span></div>
         <div class="shot"><img src="./web/04-import-setup.jpg" alt="The Add Conversations sheet guiding the user through importing messages"></div>
       </div>
@@ -308,7 +308,7 @@
         <li>Unlimited conversations and exports</li>
         <li>100% local — no account, no telemetry, updates opt-in</li>
         <li>One download per person — please don't re-share the installer</li>
-        <li>ThreadKeep 1.0 will be a one-time $18.99 purchase</li>
+        <li>ThreadKeep 1.0 will be a one-time purchase, with no subscription. Pricing will be announced before the beta becomes a paid release.</li>
       </ul>
     </div>
 
@@ -321,7 +321,9 @@
         <span class="sub">macOS 14+ · Universal · signed &amp; notarized</span>
       </div>
       <p class="paynote"><strong style="color:var(--ink)">New in beta 8</strong> — contact names and photos now appear reliably once you allow Contacts access, and granting access while the app is open takes effect right away.</p>
-      <p class="paynote">Your download is for you — please don't re-host or share the .dmg; send friends to threadkeep.xyz instead. Beta software — if something breaks or looks wrong, <a href="contact.html" style="color:var(--rust)">get in touch</a>.</p>
+      <p class="paynote"><strong style="color:var(--ink)">Before you start</strong> — ThreadKeep is beta software and may still have rough edges. It reads from a temporary copy of your Messages database and never changes the original. Keep your usual backups while you test.</p>
+      <p class="paynote"><strong style="color:var(--ink)">Beta feedback</strong> — hit a bug or have a note? Use the <a href="contact.html" style="color:var(--rust)">contact form</a>, or choose <strong style="color:var(--ink)">Help → Contact Support</strong> in the app. Include the build number shown under <strong style="color:var(--ink)">ThreadKeep → About ThreadKeep</strong>. Describe what happened in words, and never attach your Messages database, a full conversation export, or screenshots that reveal private messages, names, phone numbers, or other personal information.</p>
+      <p class="paynote">Your download is for you. Please do not re-host or share the .dmg; send others to threadkeep.xyz instead.</p>
     </div>
   </div>
 </section>
@@ -330,13 +332,13 @@
 <section id="install">
   <div class="wrap">
     <span class="kick reveal"><span class="slash">//</span> 04 — Installation</span>
-    <h2 class="reveal">Up and running in a minute.</h2>
+    <h2 class="reveal">Start in a few guided steps.</h2>
     <p class="lead reveal">Download <strong style="color:var(--ink)">ThreadKeep-1.0b8.dmg</strong> above — no email, no license key, no account.</p>
     <div class="steps reveal">
       <div class="step"><span class="n"></span><b>Open the disk image</b><p>Double-click <code>ThreadKeep-1.0b8.dmg</code>, then drag <strong>ThreadKeep</strong> into your <code>Applications</code> folder.</p></div>
       <div class="step"><span class="n"></span><b>Launch it</b><p>Open ThreadKeep from Applications. It's signed and notarized by Apple, so it opens normally. If macOS ever hesitates, right-click the app and choose <code>Open</code> once.</p></div>
-      <div class="step"><span class="n"></span><b>Allow ThreadKeep to read Messages</b><p>macOS asks your permission before any app can read Messages. In <code>System Settings → Privacy &amp; Security</code>, turn on the switch for ThreadKeep, then reopen the app. Access is read-only and never leaves your Mac.</p></div>
-      <div class="step"><span class="n"></span><b>Import your messages</b><p>Click <strong>Import Messages</strong> to build your library — everything, or just the conversations you choose. That's it.</p></div>
+      <div class="step"><span class="n"></span><b>Grant Full Disk Access</b><p>macOS keeps the Messages database in a protected area, and the permission required to reach it is called <strong>Full Disk Access</strong>. Open <code>System Settings → Privacy &amp; Security → Full Disk Access</code>, turn on ThreadKeep, then reopen the app. ThreadKeep uses this permission only to read your Messages database. It works from a temporary copy, never changes the original, and never uploads your messages or imported archive.</p></div>
+      <div class="step"><span class="n"></span><b>Import your messages</b><p>Choose what to bring in — everything, or only the conversations you want. The import starts right away and continues on its own. How long it takes depends on the size of your message history.</p></div>
     </div>
   </div>
 </section>
@@ -353,7 +355,7 @@
       <div><dt>distribution</dt><dd>Signed &amp; notarized .dmg</dd></div>
       <div><dt>built_with</dt><dd>Swift &amp; SwiftUI, native</dd></div>
       <div><dt>source_data</dt><dd>Messages on this Mac (read-only)</dd></div>
-      <div><dt>permissions</dt><dd>Read-only access to Messages, one-time</dd></div>
+      <div><dt>permissions</dt><dd>Full Disk Access — used only to read the Messages database from a temporary local copy</dd></div>
       <div><dt>export_formats</dt><dd>PDF · paginated transcript</dd></div>
       <div><dt>privacy</dt><dd>100% on-device · no account · no telemetry</dd></div>
       <div><dt>network_use</dt><dd>Opt-in update check only — fetches appcast.xml from threadkeep.xyz; transmits nothing about you</dd></div>
@@ -370,8 +372,8 @@
     <div class="faq">
       <div class="reveal"><h3>Does it change my messages?</h3><p>No. ThreadKeep only reads the Messages database on your Mac. It never sends, edits, or deletes anything.</p></div>
       <div class="reveal"><h3>Where is my data stored?</h3><p>Entirely on your Mac, in a local library. Nothing is uploaded, and there's no account to create.</p></div>
-      <div class="reveal"><h3>Why does macOS ask for permission?</h3><p>macOS keeps Messages in a protected area, so it asks your OK before any app can read it. You give ThreadKeep read-only access once, during setup — nothing is changed, and nothing leaves your Mac.</p></div>
-      <div class="reveal"><h3>Why is the beta free?</h3><p>The beta is the full app — nothing held back. It's free while ThreadKeep is polished toward 1.0. ThreadKeep 1.0 will be a one-time $18.99 purchase; no subscription, ever.</p></div>
+      <div class="reveal"><h3>Why does macOS ask for Full Disk Access?</h3><p>macOS keeps the Messages database in a protected area, and <strong>Full Disk Access</strong> is the permission required to reach it. ThreadKeep uses that permission only to read your Messages database. It works from a temporary copy, never changes the original, and never uploads your messages or imported archive. You can revoke the permission in System Settings at any time.</p></div>
+      <div class="reveal"><h3>Why is the beta free?</h3><p>The beta is free while ThreadKeep is being tested and refined. Version 1.0 will be a one-time purchase, with no subscription. Pricing will be announced before the beta becomes a paid release.</p></div>
       <div class="reveal"><h3>What happens to my library after the beta?</h3><p>Nothing — your library is a set of plain records on your Mac. Nothing expires or locks, and ThreadKeep 1.0 reads the same library.</p></div>
     </div>
   </div>
