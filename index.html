@@ -232,7 +232,7 @@
     <p class="lead">ThreadKeep pulls your iMessage history out of a database you can't see and into a library you own — browsable, fully searchable, and stored on your Mac. The conversations that would otherwise quietly disappear.</p>
     <div class="price-pill"><b>Free public beta</b> · no subscription · no account</div>
     <div class="cta-row">
-      <a href="/downloads/ThreadKeep-1.0b8.dmg" download class="btn btn-fill">Download ThreadKeep beta</a>
+      <a href="/downloads/ThreadKeep-1.0b9.dmg" download class="btn btn-fill">Download ThreadKeep beta</a>
       <a href="#features" class="btn btn-out">See how it works</a>
     </div>
     <p class="micro">macOS 14 Sonoma+ · Apple silicon &amp; Intel · works fully offline (optional update check) · 1.0 beta 8 · 4 MB</p>
@@ -314,7 +314,7 @@
 
     <div class="checkout reveal">
       <h3>Direct download</h3>
-      <a class="dl-btn" href="/downloads/ThreadKeep-1.0b8.dmg" download>Download ThreadKeep-1.0b8.dmg · 4 MB</a>
+      <a class="dl-btn" href="/downloads/ThreadKeep-1.0b9.dmg" download>Download ThreadKeep-1.0b9.dmg · 4 MB</a>
       <div class="dl-hash">
         <span class="lbl">sha-256</span>
         <code>8c1c377e999ff080feaca97f90a658b688a63c583396097de45c439e1e7f4b38</code>
@@ -333,9 +333,9 @@
   <div class="wrap">
     <span class="kick reveal"><span class="slash">//</span> 04 — Installation</span>
     <h2 class="reveal">Start in a few guided steps.</h2>
-    <p class="lead reveal">Download <strong style="color:var(--ink)">ThreadKeep-1.0b8.dmg</strong> above — no email, no license key, no account.</p>
+    <p class="lead reveal">Download <strong style="color:var(--ink)">ThreadKeep-1.0b9.dmg</strong> above — no email, no license key, no account.</p>
     <div class="steps reveal">
-      <div class="step"><span class="n"></span><b>Open the disk image</b><p>Double-click <code>ThreadKeep-1.0b8.dmg</code>, then drag <strong>ThreadKeep</strong> into your <code>Applications</code> folder.</p></div>
+      <div class="step"><span class="n"></span><b>Open the disk image</b><p>Double-click <code>ThreadKeep-1.0b9.dmg</code>, then drag <strong>ThreadKeep</strong> into your <code>Applications</code> folder.</p></div>
       <div class="step"><span class="n"></span><b>Launch it</b><p>Open ThreadKeep from Applications. It's signed and notarized by Apple, so it opens normally. If macOS ever hesitates, right-click the app and choose <code>Open</code> once.</p></div>
       <div class="step"><span class="n"></span><b>Grant Full Disk Access</b><p>macOS keeps the Messages database in a protected area, and the permission required to reach it is called <strong>Full Disk Access</strong>. Open <code>System Settings → Privacy &amp; Security → Full Disk Access</code>, turn on ThreadKeep, then reopen the app. ThreadKeep uses this permission only to read your Messages database. It works from a temporary copy, never changes the original, and never uploads your messages or imported archive.</p></div>
       <div class="step"><span class="n"></span><b>Import your messages</b><p>Choose what to bring in — everything, or only the conversations you want. The import starts right away and continues on its own. How long it takes depends on the size of your message history.</p></div>
@@ -410,7 +410,7 @@
 
   const toast=document.getElementById('toast');let tt;
   function showToast(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),4200);}
-  document.querySelectorAll('a[download]').forEach(a=>a.addEventListener('click',()=>showToast('Downloading ThreadKeep-1.0b8.dmg (4 MB) — check your Downloads folder.')));
+  document.querySelectorAll('a[download]').forEach(a=>a.addEventListener('click',()=>showToast('Downloading ThreadKeep-1.0b9.dmg (4 MB) — check your Downloads folder.')));
 
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));

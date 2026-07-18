@@ -23,6 +23,26 @@
     <language>en</language>
 
     <item>
+      <title>ThreadKeep 1.0b9</title>
+      <pubDate>Sat, 18 Jul 2026 14:08:02 -0400</pubDate>
+      <sparkle:version>9</sparkle:version>
+      <sparkle:shortVersionString>1.0b9</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[
+        <h2>What's new in 1.0b9</h2>
+        <ul>
+          <li>Send your entire library — or a single conversation — to ThreadKeep for iPhone over Wi-Fi: pair with a 4-digit code, watch live progress, done.</li>
+          <li>New welcome screen with clearer choices, and a QR code to grab the iPhone app.</li>
+        </ul>
+      ]]></description>
+      <enclosure
+        url="https://threadkeep.xyz/downloads/ThreadKeep-1.0b9.dmg"
+        length="4573956"
+        type="application/octet-stream"
+        sparkle:edSignature="+rMjEfn+WXIeEEicoGG8l12W65oThmf75tp5uAqYti8qJnFn4rVoG+1Z/28vyBjySTBc2zm5zUBCiOPVmYWrBw==" />
+    </item>
+
+    <item>
       <title>ThreadKeep 1.0b8</title>
       <pubDate>Sat, 11 Jul 2026 16:50:25 -0400</pubDate>
       <sparkle:version>8</sparkle:version>
